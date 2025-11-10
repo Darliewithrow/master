@@ -11,7 +11,7 @@ actor:Daractor:Darliewithrowliewithrowactor:Darliewithrowactor:Darliewithrow
 
 ## Solution
 
-The `actor_parser.py` script parses the input string by splitting on the `actor:` delimiter and extracting unique actor names.
+The `actor_parser.py` script parses the input string by splitting on the `actor:` delimiter, then intelligently filters out corrupted and fragmented actor names to extract only valid actor names.
 
 ### Usage
 
@@ -29,11 +29,9 @@ python3 actor_parser.py actor_data.txt
 
 ```
 Parsed Actors:
-1. Dar
-2. Darliewithrowliewithrow
-3. Darliewithrow
+1. Darliewithrow
 
-Total unique actors: 3
+Total unique actors: 1
 ```
 
 ## Testing
@@ -47,9 +45,10 @@ python3 test_actor_parser.py
 ## Implementation Details
 
 - The parser splits the input string by `actor:` delimiter
-- Removes empty strings and whitespace
+- Identifies and filters out corrupted names with internal repetitions
+- Removes fragment names that are prefixes of longer valid names
 - Maintains unique actors in order of first appearance
-- Returns a list of actor names
+- Returns a list of valid actor names
 
 ## License
 

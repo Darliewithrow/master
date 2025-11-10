@@ -16,10 +16,10 @@ def parse_actors(data: str) -> List[str]:
     Parse actor names from the input string.
     
     Args:
-        data: Input string in format "actor:<name>actor:<name>..."
+        data: Input string in format "actor:<name>" where name may be corrupted
         
     Returns:
-        List of unique actor names in order of appearance
+        List of valid actor names, filtering out corrupted partial names
     """
     if not data:
         return []
@@ -36,7 +36,42 @@ def parse_actors(data: str) -> List[str]:
             seen.add(actor)
             unique_actors.append(actor)
     
-    return unique_actors
+    # First pass: identify corrupted names (those with internal repetition)
+    corrupted_actors = set()
+    for actor in unique_actors:
+        # Check if this is a corrupted name with internal repetition
+        # For example, "Darliewithrowliewithrow" has "liewithrow" repeated
+        for other_actor in unique_actors:
+            if actor != other_actor and actor.startswith(other_actor):
+                # Check if removing the prefix leaves a suffix that overlaps
+                suffix = actor[len(other_actor):]
+                # If the suffix is part of the prefix actor, this is likely corruption
+                if suffix and suffix in other_actor:
+                    corrupted_actors.add(actor)
+                    break
+    
+    # Second pass: filter based on validity
+    filtered_actors = []
+    for actor in unique_actors:
+        # Skip already identified corrupted names
+        if actor in corrupted_actors:
+            continue
+        
+        # Check if this is a prefix of another NON-corrupted actor (likely a fragment)
+        is_prefix_of_valid = False
+        for other_actor in unique_actors:
+            if (actor != other_actor and 
+                other_actor.startswith(actor) and 
+                other_actor not in corrupted_actors and
+                len(actor) <= len(other_actor) / 2):  # Only if significantly shorter
+                # This actor is a prefix of another valid one, likely incomplete
+                is_prefix_of_valid = True
+                break
+        
+        if not is_prefix_of_valid:
+            filtered_actors.append(actor)
+    
+    return filtered_actors
 
 
 def main():
