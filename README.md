@@ -10,6 +10,8 @@ Before contributing to Ethereum EIPs, you may need to set up Node.js for testing
 
 1. **Download and install nvm:**
 
+   > **Note:** Always verify the installation script from the [official nvm repository](https://github.com/nvm-sh/nvm) before running.
+
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
