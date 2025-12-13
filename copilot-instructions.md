@@ -102,4 +102,4 @@ When making changes:
 - Changes should improve clarity and usefulness for new contributors
 - Preserve the helpful, educational tone of the existing content
 - When adding new sections, follow the established format and structure
-- Always consider whether changes align with helping users overcome the "uploads disabled" error
+- Always consider whether changes align with helping users overcome the "Uploads are disabled" error
