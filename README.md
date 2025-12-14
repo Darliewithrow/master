@@ -2,6 +2,46 @@
 
 This guide explains how to contribute to the [Ethereum EIPs repository](https://github.com/ethereum/EIPs) when you encounter the "Uploads are disabled" error.
 
+## Setting Up Your Development Environment
+
+Before contributing to Ethereum EIPs, you may need to set up Node.js for testing and development. Here's how to install Node.js using nvm (Node Version Manager), which allows you to easily manage multiple Node.js versions.
+
+### Installing nvm and Node.js
+
+1. **Download and install nvm:**
+
+   > **Note:** Always verify the installation script from the [official nvm repository](https://github.com/nvm-sh/nvm) before running.
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+2. **Activate nvm** (in lieu of restarting the shell):
+
+```bash
+. "$HOME/.nvm/nvm.sh"
+```
+
+3. **Download and install Node.js:**
+
+```bash
+nvm install 24
+```
+
+4. **Verify the Node.js version:**
+
+```bash
+node -v # Should print "v24.12.0".
+```
+
+5. **Verify npm version:**
+
+```bash
+npm -v # Should print "11.6.2".
+```
+
+This setup ensures you have the correct Node.js and npm versions for Ethereum development tools and testing frameworks.
+
 ## Why You're Seeing the Upload Error
 
 When you try to upload files directly to the ethereum/EIPs repository, you see this error:
