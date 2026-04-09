@@ -6,6 +6,17 @@ This guide walks you through the standard GitHub contribution workflow for the [
 
 ---
 
+## Table of Contents
+
+- [Why You're Seeing the "Uploads are disabled" Error](#why-youre-seeing-the-uploads-are-disabled-error)
+- [How to Contribute: Step-by-Step](#how-to-contribute-step-by-step)
+- [EIP Contribution Guidelines](#eip-contribution-guidelines)
+- [Common File Types in EIPs](#common-file-types-in-eips)
+- [Resources](#resources)
+- [Need Help?](#need-help)
+
+---
+
 ## Why You're Seeing the "Uploads are disabled" Error
 
 When you try to upload files directly to `ethereum/EIPs`, you see:
