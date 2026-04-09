@@ -106,3 +106,58 @@ Before contributing an EIP (Ethereum Improvement Proposal), make sure to:
 ---
 
 **Note**: This repository (Darliewithrow/master) is a guide repository. The actual EIPs should be submitted to https://github.com/ethereum/EIPs following the process described above.
+
+---
+
+## Transaction ID Handling
+
+This repository includes a Python utility (`transaction_id.py`) for working with Ethereum transaction IDs (transaction hashes).
+
+### What is an Ethereum Transaction ID?
+
+An Ethereum transaction ID is a 32-byte hash represented as a 66-character hex string, for example:
+
+```
+0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1
+```
+
+It starts with `0x` and is followed by exactly 64 hexadecimal digits.
+
+### Usage
+
+```python
+from transaction_id import (
+    is_valid_transaction_id,
+    normalize_transaction_id,
+    format_transaction_id,
+    parse_transaction_ids,
+)
+
+tx = "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1"
+
+# Validate
+is_valid_transaction_id(tx)          # True
+
+# Normalize (lowercase, ensure 0x prefix)
+normalize_transaction_id("0xABC..." + "0" * 61)  # "0xabc...0"
+
+# Format (full or shortened)
+format_transaction_id(tx)            # full form
+format_transaction_id(tx, short=True)  # "0xabc123...56abc1"
+
+# Extract all valid IDs from a block of text
+parse_transaction_ids("tx1=0x... tx2=0x...")
+```
+
+Run the script directly:
+
+```bash
+python3 transaction_id.py               # Uses built-in example data
+python3 transaction_id.py txdata.txt    # Reads from a file
+```
+
+Run the test suite:
+
+```bash
+python3 test_transaction_id.py
+```
