@@ -139,7 +139,7 @@ tx = "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1"
 is_valid_transaction_id(tx)          # True
 
 # Normalize (lowercase, ensure 0x prefix)
-normalize_transaction_id("0xABC..." + "0" * 61)  # "0xabc...0"
+normalize_transaction_id("0xABC123DEF456ABC123DEF456ABC123DEF456ABC123DEF456ABC123DEF456ABC1")  # "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1"
 
 # Format (full or shortened)
 format_transaction_id(tx)            # full form
