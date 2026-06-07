@@ -108,3 +108,4 @@ python3 test_actor_parser.py
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+https://app.chime.com/link/qr?u=Darlie-Withrow
