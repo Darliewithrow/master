@@ -229,8 +229,8 @@ git push -u origin your-change-name
 
 - [ethereum/EIPs repository](https://github.com/ethereum/EIPs)
 - [GitHub documentation: Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-- [GitHub documentation: Creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/creating-a-pull-request-from-a-fork)
-- [Git documentation](https://git-scm.com/doc)
+- [GitHub documentation: Working with forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks)
+- [Git documentation](https://git-scm.com/book/en/v2)
 
 ---
 
