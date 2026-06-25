@@ -61,4 +61,4 @@ This is a **guide repository** — it explains how to contribute to [ethereum/EI
 
 ## Questions or Suggestions?
 
-Open an [issue](../../issues) in this repository to discuss ideas before making large changes. For questions about contributing to the actual Ethereum EIPs repository, see the [Resources section](README.md#resources) in the main guide.
+Open an [issue](https://github.com/Darliewithrow/master/issues) in this repository to discuss ideas before making large changes. For questions about contributing to the actual Ethereum EIPs repository, see the [Resources section](README.md#resources) in the main guide.
