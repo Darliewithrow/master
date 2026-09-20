@@ -1,6 +1,6 @@
-# Contributing to Ethereum EIPs
+# Fixing the "Uploads are disabled" Error for Ethereum EIPs
 
-This guide explains how to contribute to the [Ethereum EIPs repository](https://github.com/ethereum/EIPs) when you encounter the "Uploads are disabled" error.
+If GitHub shows **"Uploads are disabled. File uploads require push access to this repository."** while you are trying to contribute to [`ethereum/EIPs`](https://github.com/ethereum/EIPs), you are usually attempting to upload files directly to the main EIPs repository.
 
 ## Setting Up Your Development Environment
 
@@ -42,107 +42,116 @@ npm -v # Should print "11.6.2".
 
 This setup ensures you have the correct Node.js and npm versions for Ethereum development tools and testing frameworks.
 
-## Why You're Seeing the Upload Error
+That repository only allows maintainers to push changes directly. Contributors should work from a **fork** and then open a **pull request**.
 
-When you try to upload files directly to the ethereum/EIPs repository, you see this error:
+## What the Error Means
 
-> **Uploads are disabled.**
-> File uploads require push access to this repository.
+The message does **not** mean you cannot contribute. It means:
 
-This is expected behavior. The ethereum/EIPs repository doesn't allow direct file uploads from users who don't have write access to the repository.
+- You do not have direct write access to `ethereum/EIPs`
+- GitHub is blocking uploads to the upstream repository
+- You need to submit your changes from your own fork instead
 
-## How to Contribute to the EIPs Repository
+## Recommended Workflow
 
-Instead of uploading files directly, you need to follow the standard GitHub contribution workflow:
+Follow these steps to contribute the standard GitHub way.
 
-### 1. Fork the Repository
+### 1. Fork the EIPs Repository
 
-1. Go to https://github.com/ethereum/EIPs
-2. Click the "Fork" button in the top-right corner
-3. This creates a copy of the repository under your GitHub account
+Open the [ethereum/EIPs repository](https://github.com/ethereum/EIPs) and select **Fork**.
+
+Create a fork under your own GitHub account so you have permission to push changes there.
 
 ### 2. Clone Your Fork
+
+Clone **your fork**, not the upstream repository:
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/EIPs.git
 cd EIPs
 ```
 
-### 3. Create a New Branch
+Replace `YOUR-USERNAME` with your GitHub username.
+
+### 3. Add the Upstream Remote
+
+Connect your local clone to the official EIPs repository so you can pull future updates:
 
 ```bash
-git checkout -b your-feature-branch
+git remote add upstream https://github.com/ethereum/EIPs.git
+git remote -v
 ```
 
-### 4. Add Your Files
+After this, `origin` should point to your fork and `upstream` should point to `ethereum/EIPs`.
 
-You can now add, modify, or create files locally on your computer:
+### 4. Create a Branch for Your Change
+
+Create a separate branch before editing files:
 
 ```bash
-# Add your new files
-git add your-file.md
-
-# Or modify existing files and add them
-git add modified-file.md
+git checkout -b your-eip-change
 ```
 
-### 5. Commit Your Changes
+Use a short, descriptive branch name that matches your work.
+
+### 5. Make Your Changes and Commit Them
+
+Edit the files you need, then commit your work:
 
 ```bash
-git commit -m "Add/Update: Brief description of your changes"
+git add .
+git commit -m "docs: describe your change"
 ```
+
+Use a commit message that clearly explains what you changed.
 
 ### 6. Push to Your Fork
 
+Push your branch to GitHub:
+
 ```bash
-git push origin your-feature-branch
+git push -u origin your-eip-change
 ```
 
-### 7. Create a Pull Request
+Because this push goes to **your fork**, GitHub allows it even though you do not have write access to the upstream repository.
 
-1. Go to your fork on GitHub (https://github.com/YOUR-USERNAME/EIPs)
-2. Click "Compare & pull request"
-3. Fill in the pull request details:
-   - Title: Clear, concise description
-   - Description: Explain your changes and why they're needed
-4. Click "Create pull request"
+### 7. Open a Pull Request
 
-### 8. Wait for Review
+After the push completes:
 
-The ethereum/EIPs maintainers will review your pull request and may:
-- Approve and merge it
-- Request changes
-- Provide feedback
+1. Open your fork on GitHub
+2. Select the prompt to create a pull request
+3. Confirm the base repository is `ethereum/EIPs`
+4. Submit your pull request for review
 
-## EIP Contribution Guidelines
+## If You Already Cloned the Wrong Repository
 
-Before contributing an EIP (Ethereum Improvement Proposal), make sure to:
+If you cloned `https://github.com/ethereum/EIPs.git` directly and started working locally, you can usually fix it without losing your changes:
 
-1. Read the [EIP-1](https://eips.ethereum.org/EIPS/eip-1) process document
-2. Follow the EIP template format
-3. Ensure your EIP is complete and well-documented
-4. Discuss your idea in the Ethereum community first (forums, Discord, etc.)
+```bash
+git remote rename origin upstream
+git remote add origin https://github.com/YOUR-USERNAME/EIPs.git
+git push -u origin your-eip-change
+```
 
-## Common File Types in EIPs
+This keeps the official repository as `upstream` and makes your fork the new `origin`.
 
-- **Markdown files (.md)**: EIP documents themselves
-- **Asset files**: Images, diagrams, etc. (usually placed in an `assets` folder)
-- **Code examples**: Supporting code for your proposal
+## Troubleshooting Checklist
+
+If you still see the upload error, confirm that:
+
+- You are pushing to `https://github.com/YOUR-USERNAME/EIPs.git`
+- Your branch exists on your fork
+- You are opening a pull request instead of uploading directly to `ethereum/EIPs`
+- You are signed in to the GitHub account that owns the fork
 
 ## Resources
 
-- **EIPs Website**: https://eips.ethereum.org/
-- **EIPs Repository**: https://github.com/ethereum/EIPs
-- **EIP-1 (Process)**: https://eips.ethereum.org/EIPS/eip-1
-- **GitHub Docs on Forking**: https://docs.github.com/en/get-started/quickstart/fork-a-repo
-- **GitHub Docs on Pull Requests**: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+- [ethereum/EIPs repository](https://github.com/ethereum/EIPs)
+- [GitHub Docs: Fork a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+- [GitHub Docs: Creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+- [GitHub Docs: Managing remote repositories](https://docs.github.com/en/get-started/git-basics/managing-remote-repositories)
 
-## Need Help?
+## Scope of This Repository
 
-- Join the [Ethereum Magicians forum](https://ethereum-magicians.org/)
-- Visit the [Ethereum Discord](https://discord.gg/ethereum-org)
-- Ask questions in the EIPs repository discussions
-
----
-
-**Note**: This repository (Darliewithrow/master) is a guide repository. The actual EIPs should be submitted to https://github.com/ethereum/EIPs following the process described above.
+This repository is only a guide for the contribution workflow. It is **not** the place to submit actual EIP changes. For real proposals and edits, use the [`ethereum/EIPs`](https://github.com/ethereum/EIPs) repository.
